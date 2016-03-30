@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <canvas id="mycanvas" width="1200" height="600" style="border: 1px solid yellow;"></canvas>
+
+    <script>
+        var ctx;
+        var updown; // 上下移动
+        var cwidth      = 1200;
+        var cheight     = 600;
+        var umbrellaArr = [];
+        var updownTime  = 0;
+        var rotateTime  = 0;
+        var origin      = 2; // 上下的原点
+        var rotateAngle = 0; // 上下的原点
+
+        // umbrella
+        function Umbrella(ux,uy,ucolor){
+            this.x         = ux;
+            this.y         = uy;
+            this.fillStyle = ucolor;
+            this.draw      = drawUmbrella;
+            this.move      = moveUmbrella;
+        }
+
+       // draw umbrella
+        function drawUmbrella(){
+            // 半圆
+            ctx.fillStyle = this.fillStyle;
+            ctx.beginPath();
+            ctx.arc(this.x,this.y,30,0,Math.PI,true);
+            ctx.closePath();
+            ctx.fill();
+
+            // 伞柄
+            ctx.fillRect(this.x - 1.5,this.y,1.5,40)
+            ctx.beginPath()
+            ctx.strokeStyle = this.fillStyle;
+            ctx.arc(this.x - 5,this.y + 40,4,Math.PI,Math.PI * 2,true)
+            ctx.stroke()
+            ctx.closePath()
+        }
+
+        // 移动伞
+        function moveUmbrella(dx,dy){
+            this.x += dx
+            this.y += dy
+        }
+
+        function init(){
+            ctx = document.getElementById('mycanvas').getContext('2d')
+            ctx.translate(200,300)
+
+            for(var i = 0;i < 10;i++){
+                var umbrella = new Umbrella(i * 70, 0, "rgb(" + (30 * i) + "," + (255 - 30 * i) + ",255)")
+                umbrellaArr.push(umbrella)
+            }
+
+            updown = setInterval(updownFunc, 100);
+            setTimeout(function () {
+                clearInterval(updown);
+                ctx.translate(300,0);//改变中心点
+                setInterval(rotateUmbrella, 100);
+            }, 10000);
+        }
+
+        function updownFunc(){
+
+            if(updownTime % 50 == 0){
+                origin = -origin
+            }
+
+            clearCanvas(-200,-300)
+            updownTime ++;
+
+            for(var i = 0; i < umbrellaArr.length;i++){
+                if(i % 2 == 0){
+                    umbrellaArr[i].move(0,origin)
+                }else{
+                    umbrellaArr[i].move(0,-origin)
+                }
+                umbrellaArr[i].draw()
+            }
+
+            updownTime == 100 && clearInterval(updown)
+
+        }
+
+        function rotateUmbrella(){
+            clearCanvas(-400,-300)
+            rotateTime ++;
+
+            for(var i = 0; i < umbrellaArr.length;i++){
+                ctx.save() 
+                ctx.rotate(Math.PI * (2 / 4 + i / 4))
+                ctx.translate(0, rotateAngle)
+
+                umbrellaArr[i].x = 0
+                umbrellaArr[i].y = 0
+                umbrellaArr[i].draw()
+
+                ctx.restore()
+            }
+
+            rotateAngle ++;
+
+            if(rotateAngle == 70){
+                rotateAngle = -rotateAngle
+            }
+
+        }
+
+        function clearCanvas(x,y){
+            ctx.clearRect(x,y,cwidth,cheight)
+        }
+
+        window.onload = function () {
+            init()
+        }
+    </script>
+</body>
+</html>
