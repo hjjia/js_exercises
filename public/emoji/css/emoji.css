@@ -1,0 +1,189 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+*{
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+body{
+    color: #545454;
+    background: url(../images/whiteBg.png) repeat;
+    line-height: 1.5;
+    font-size: 16px;
+}
+.border{
+    border: 1px solid yellow;
+}
+.right{
+    float: right;
+}
+.content{
+    width: 60%;
+    margin: 100px auto 0;
+    padding: 20px;
+}
+.show{
+    position: relative;
+    margin-top: 50px;
+}
+.block-list{
+    padding: 10px;
+}
+.block-list .item{
+    list-style: none;
+    padding: 10px 0;
+    border-bottom: 1px solid #dfdfdf;
+}
+.show-group{
+    padding: 10px;
+    position: relative;
+}
+.show-group:after{
+    display: block;
+    content: '';
+    clear: both;
+}
+.icon-emoji{
+    display: block;
+    float: left;
+    background: url("../images/facebg_1.png") 0px -100px no-repeat;
+    width:20px;
+    height:20px;
+    cursor: pointer;
+}
+.icon-emoji.active{
+    background: url("../images/facebg_1.png") 0px -120px no-repeat;
+}
+.clear{
+    clear: both;
+    margin-bottom:20px;
+    content: '';
+    display: block;
+}
+.popover{
+    width: 100%;
+    -webkit-box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    background-color: #FFFFFF;
+    padding: 20px;
+    border-radius: 2px;
+    position: relative;
+    max-width: 60%;
+}
+.popover:before{
+    content: "";
+    z-index: -1;
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    margin-left: -10px;
+    position: absolute;
+    top: -8px;
+    left: 4%;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+     transform: rotate(45deg);
+    box-shadow: 0px 5px 20px rgba(0,0,0,.5);
+
+}
+.popover:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 20px;
+    right: 20px;
+    height: 22px;
+    background: white;
+}
+.popover .close{
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    display: block;
+    cursor: pointer;
+    z-index: 99;
+}
+.popover .close:hover{
+    color: #333;
+}
+.title{
+    font-size: 16px;
+    line-height: 2.0;
+    border-bottom: 1px solid #dfdfdf;
+}
+.list-inline{
+    padding: 10px 0;
+}
+.list-inline li{
+    height: 30px;
+    margin-bottom: 2px;
+}
+.list-inline li .link{
+    text-decoration: none;
+    cursor: pointer;
+    display: block;
+    padding: 2px 2px 0;
+}
+.list-inline li .link:hover {
+    border: 1px solid #FF871B;
+}
+.list-inline li{
+    list-style: none;
+    float: left;
+}
+.list-inline li:hover{
+
+}
+.list-inline:after{
+    display: block;
+    content: '';
+    clear: both;
+}
+.btn{
+    display: inline-block;
+    padding: 6px 15px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: #FFFFFF;
+}
+.btn:hover{
+    color: #333;
+    text-decoration: none;
+}
+.form-control{
+    display: block;
+    width: 100%;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.form-control:focus{
+    border: 1px solid #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+}

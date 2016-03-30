@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表情输入</title>
+    <link rel="stylesheet" type="text/css" href="../public/static/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="../public/emoji/css/emoji.css">
+</head>
+<body>
+
+    <div class="content">
+        <div class="main">
+            <textarea class="form-control" rows="7" id="js-emoji-text"></textarea>
+            <div class="show-group" id="js-emoji">
+                <span class="icon-emoji " id="js-emoji-icon"></span>
+                <button class="btn right" id="js-show">发表</button>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="show" id="js-show-emoji">
+            <ul class="block-list ">
+                <li class="item ">hello</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="../public/static/js/jquery-1.11.3.min.js"></script>
+    <script src="../public/emoji/js/emoji.js"></script>
+    <script >
+        $(function (){
+            $("#js-emoji-icon").emoji({
+                divid : "#js-emoji",    //外层DIV ID
+                textid : "#js-emoji-text" //文本框 ID
+            });
+        });
+        $('#js-show').on('click',function() {
+            var htmlDom = $('#js-emoji-text')
+            var html    = htmlDom.val()
+
+            console.log(html)
+            html = htmlDom.replaceface(html);
+
+            $('#js-show-emoji ul').append('<li class="item">'+html + '</li>');
+
+            htmlDom.val('')
+        });
+    </script>
+</body>
+</html>
