@@ -10,6 +10,8 @@
         }
     }
 
+    AI.init()
+
     var chess = document.getElementById('chess')
     var ctx   = chess.getContext('2d')
 
@@ -22,8 +24,11 @@
         ctx.drawImage(logo,0,0,450,450)
         drawChessBoard()
 
-        oneStep(0,0,true)
-        oneStep(1,1,false)
+        //drawChessMan(7,7)
+        //drawChessMan(0,0)
+        //drawChessMan(AI.getFirstPoint(12,12).x,AI.getFirstPoint(12,12).y)
+
+        me = !me
     }
 
     var drawChessBoard = function () {
@@ -62,24 +67,47 @@
         ctx.fill()
     }
 
-    chess.onclick = function (e) {
+
+chess.onclick = function (e) {
         var chessX = e.offsetX
         var chessY = e.offsetY
 
         var i = Math.floor(chessX / 30)
         var j = Math.floor(chessY / 30)
 
+        // 画棋子
+        drawChessMan(i,j)
+    }
+
+    var drawChessMan = function (x, y) {
+
         // 没有棋子才能落子
-        if(chessBoardArr[i][j] == 0){
-            oneStep(i,j,me)
+        if(chessBoardArr[x][y] == 0){
+            oneStep(x,y,me)
             if(me){ //黑子
-                chessBoardArr[i][j] = 1
+                chessBoardArr[x][y] = 1
             }else{
-                chessBoardArr[i][j] =2
+                chessBoardArr[x][y] = 2
+            }
+            if(AI.isWin(x,y)){
+                var type = chessBoardArr[x][y]
+                if(type == 1){
+                    alert("黑棋胜 游戏结束")
+                    clearCanvasChess()
+                }
+                else{
+                    alert("白棋胜 游戏结束")
+                    clearCanvasChess()
+                }
             }
             me = !me;
         }
 
     }
+
+    var clearCanvasChess = function () {
+        window.location.reload()
+    }
+
 
 
