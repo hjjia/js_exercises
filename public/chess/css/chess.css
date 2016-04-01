@@ -2,9 +2,32 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
+body{
+    font-size: 14px;
+    color: #545454;
+}
+.title{
+    margin-top: 50px;
+    text-align: center;
+    font-size: 16px;
+}
+.canvas{
+    position: relative;
+    width: 750px;
+    margin: 0 auto;
+}
 #chess{
     display: block;
     margin: 50px auto;
     box-shadow: -2px -2px 2px #efefef,5px 5px 5px #b9b9b9;
     background: url("../images/whiteBg.png") repeat;
+}
+.bar{
+    text-align: center;
+}
+.nav-bar{
+    position: absolute;
+    top: 100px;
+    right: 0;
+    width: 100px;
 }
