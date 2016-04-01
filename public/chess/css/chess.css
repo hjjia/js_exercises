@@ -31,3 +31,16 @@ body{
     right: 0;
     width: 100px;
 }
+
+.copyright{
+    margin-top: 40px;
+    color: #545454;
+    text-align: center;
+}
+.copyright .link{
+    color: #337ab7;
+    text-decoration: none;
+}
+.copyright .link:hover{
+    color: #23527c;
+}
