@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2016/4/1.
  */
-var me    = true
+var me    = true  // 黑子
 var chessBoardArr = []  // 棋盘交叉点
 var chess = document.getElementById('chess')
 var ctx   = chess.getContext('2d')
@@ -69,7 +69,7 @@ for(var i = 0;i <11 ;i++){
     }
 }
 
-console.log(count)
+console.log(wins)
 
 // 初始化统计数组
 for(var i = 0;i < count;i++){
@@ -79,12 +79,12 @@ for(var i = 0;i < count;i++){
 
 ctx.strokeStyle = '#bfbfbf'
 
-// 画水印
+// 画水印  这里需要在画完图片之后在画棋盘  否则  背景图会覆盖棋盘
 var logo = new Image()
 logo.src = '../public/chess/images/whiteBg.png'
 logo.onload = function () {
     ctx.drawImage(logo,0,0,450,450)
-    drawChessBoard()
+    drawChessBoard()  // 画棋盘
 
 }
 var drawChessBoard = function () {
@@ -133,7 +133,7 @@ chess.onclick = function (e) {
     var chessX = e.offsetX
     var chessY = e.offsetY
 
-    var i = Math.floor(chessX / 30)
+    var i = Math.floor(chessX / 30) // 因为棋盘留白15px 棋子半径15px 所以在30px范围内的点都画棋子
     var j = Math.floor(chessY / 30)
 
     // 画棋子

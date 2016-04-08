@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+        // 方法1
+        var a = []
+        for(var i = 0; i < 10000000; i++){
+            a.push(Math.floor(Math.random()*100 + 1))
+        }
+        var a1 = a
+        var a2 = a
+        var a3 = a
+
+        Array.prototype.unique = function () {
+
+            //创建一个数组存放  时间复杂度O(n) = n*n
+            var temp = [this[0]]
+
+            for(var i = 1; i < this.length;i++){
+                var isRepeat = false // 默认当前不重复
+                for(var j = 0; j < temp.length; j ++){
+                    if(this[i] == temp[j]){
+                        isRepeat = true
+                        break;
+                    }
+                }
+                if(!isRepeat){
+                    temp.push(this[i])
+                }
+            }
+
+            return temp;
+        }
+
+        // 方法2 时间复杂度O(n) = n + O(sort())
+        Array.prototype.unique2 = function (){
+
+            //创建一个数组存放
+            var temp = [this[0]]
+
+            // 对原数组进行排序
+            this.sort()
+
+            for(var i = 1; i < this.length;i++){
+
+                this[i] != temp[temp.length - 1] && temp.push(this[i])
+
+            }
+
+            return temp
+
+        }
+
+        // 方法3  时间复杂度O(n) = n
+        Array.prototype.unique3 = function (){
+            //创建一个数组存放
+            var temp = []
+            var obj  = {}
+
+            for(var i = 0; i < this.length;i++){
+
+                if(!obj[this[i]]){
+                    temp.push(this[i])
+                    obj[this[i]] = 1
+                }
+            }
+            return temp
+        }
+
+        // 方法4 时间复杂度O(n) = n
+        Array.prototype.unique4 = function (){
+            //创建一个数组存放
+            var temp = []
+            var obj  = []
+
+            for(var i = 0; i < this.length;i++){
+
+                if(!obj[this[i]]){
+                    temp.push(this[i])
+                    obj[this[i]] = 1
+                }
+            }
+            return temp
+        }
+
+
+        var startTime = new Date().getTime()
+        a.unique()
+        var endTime = new Date().getTime()
+        var gapTime = endTime - startTime
+        console.log("方法1运行时间： " + gapTime + " ms")
+
+        startTime = new Date().getTime()
+        a1.unique2()
+        endTime = new Date().getTime()
+        gapTime = endTime - startTime
+        console.log("方法2运行时间： " + gapTime + " ms")
+
+        startTime = new Date().getTime()
+         a2.unique3()
+        endTime = new Date().getTime()
+        gapTime = endTime - startTime
+        console.log("方法3运行时间： " + gapTime + " ms")
+
+        startTime = new Date().getTime()
+        a3.unique4()
+        endTime = new Date().getTime()
+        gapTime = endTime - startTime
+        console.log("方法4运行时间： " + gapTime + " ms")
+
+
+    </script>
+</body>
+</html>
