@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+        var str ="adadfdfseffserfefs'efseeff$&ffftsdg";
+        for(var i=0,len=0,temp="";i<str.length;i++){
+            var s=str.substr(i,1);
+        var tt=str.split(s);
+        if(tt.length>len){
+            len=tt.length;
+            temp=s+"出现最多次数为"+len;
+        }
+        }
+        alert(temp);
+    </script>
+</body>
+</html>
